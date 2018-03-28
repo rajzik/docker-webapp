@@ -1,1 +1,29 @@
 version: "3.1"
+
+services:
+  pgdb:
+    image: postgres
+    restart: always
+    ports: 
+      - 5432:5432
+    environment:
+      #PROSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: webapp
+    volumes:
+      - ./database/data:/var/lib/postgresql/data:rw
+    
+  adminer:
+    image: adminer
+    ports:
+      - 8080:8080
+  
+  server:
+    build: ./server
+    command: python3 manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code
+    ports:
+      - 8000:8000
+    depends_on:
+      - pgdb

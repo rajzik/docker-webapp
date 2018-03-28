@@ -1,0 +1,3 @@
+django
+graphene-django>=2.0
+psycopg2
