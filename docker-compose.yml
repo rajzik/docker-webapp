@@ -20,10 +20,18 @@ services:
   
   server:
     build: ./server
-    command: python3 manage.py runserver 0.0.0.0:8000
+    command: python3 manage.py runserver 0.0.0.0:5555
     volumes:
-      - .:/code
+      - ./server:/usr/src/webapp
     ports:
-      - 8000:8000
+      - 5555:5555
     depends_on:
       - pgdb
+  # migrate:
+  #   build: ./server
+  #   command: python3 manage.py migrate
+  #   volumes:
+  #     - ./server:/usr/src/webapp
+  #   depends_on:
+  #     - pgdb
+    

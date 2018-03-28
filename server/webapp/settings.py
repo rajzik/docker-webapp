@@ -25,7 +25,7 @@ SECRET_KEY = 'kfl*#(@1+m-=xh%%xncp@g1iau6_9=fjameefc)2@4snx8w@w1'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -81,7 +81,7 @@ DATABASES = {
         'NAME': 'webapp',
         'USER': 'postgres',
         'PASSWORD': 'admin',
-        'HOST': '127.0.0.1',
+        'HOST': 'pgdb',
         'PORT': '5432',
     }
 }
