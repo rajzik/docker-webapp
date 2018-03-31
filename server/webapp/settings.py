@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'users',
     'graphene_django',
 ]
 
@@ -128,5 +129,5 @@ STATIC_URL = '/static/'
 # Graphene setup
 
 GRAPHENE = {
-    'SCHEMA': 'people.schema.schema'
+    'SCHEMA': 'webapp.schema.schema'
 }
