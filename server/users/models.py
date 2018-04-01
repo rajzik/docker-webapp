@@ -48,7 +48,7 @@ class Message(models.Model):
 class Room(models.Model):
     id = models.AutoField(primary_key=True)
     room_name = models.CharField(max_length=50)
-    last_active = models.DateTimeField()
+    last_active = models.DateTimeField(auto_now=True)
     date_created = models.DateTimeField(auto_now=True)
     users = models.ManyToManyField(User, through='UserRooms')
     room_messages = models.ManyToManyField('GroupMessage', through='RoomMessages')
@@ -80,7 +80,7 @@ class UserRooms(models.Model):
 class GroupMessage(models.Model):
     id = models.AutoField(primary_key=True)
     message = models.CharField(max_length=550)
-    time = models.DateTimeField()
+    time = models.DateTimeField(auto_now=True)
     from_user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     class Meta:

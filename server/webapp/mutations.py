@@ -12,6 +12,7 @@ class UserType(DjangoObjectType):
         model = User
 
 
+
 class UserCreateInput(InputObjectType):
     first_name = graphene.String(required=True)    
     last_name = graphene.String(required=True)    

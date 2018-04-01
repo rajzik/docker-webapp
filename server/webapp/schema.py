@@ -1,7 +1,6 @@
 from graphene_django import DjangoObjectType
 import graphene
 from users.models import User, Message, Room, GroupMessage
-
 from .mutations import UserType, CreateUser, UpdateUser
 
 class MessageType(DjangoObjectType):
