@@ -1,11 +1,45 @@
+from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.db import models
+import hashlib
 
 """ 
 Database models 
 """
 
+class UserManager(BaseUserManager):
+    def create_user(self, email, password=None, **kwars):
+        """
+        Creates and saves a User with the given email and password.
+        """
+        if not email:
+            raise ValueError('Users must have an email address')
+        if not password:
+            raise ValueError('Users must have an password')
+            
 
-class User(models.Model):
+        user = self.model(
+            email=self.normalize_email(email),
+        )
+
+        user.set_password(hashlib.md5(password.encode("utf")).hexdigest())
+        user.save(using=self._db)
+        return user
+
+    def create_superuser(self, email, password):
+        """
+        Creates and saves a superuser with the given email and password.
+        """
+        user = self.create_user(
+            email, password=password
+        )
+        user.is_superuser = True
+        user.is_staff = True
+        user.save(using=self._db)
+        return user
+
+class User(AbstractUser):
+    USERNAME_FIELD = 'username'
+    REQUIRED_FIELDS = ['email', 'name', 'last_name']
     id = models.AutoField(primary_key=True)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
@@ -14,7 +48,10 @@ class User(models.Model):
     is_superuser = models.BooleanField(default=False)
     date_joined = models.DateTimeField(auto_now=True)
     last_login = models.DateTimeField(auto_now=True)
+    email = models.CharField(max_length=100)
     
+    options = UserManager()
+
     friends = models.ManyToManyField('self')
 
     messages = models.ManyToManyField(
@@ -27,10 +64,15 @@ class User(models.Model):
         'Room',
         through='UserRooms'
     )
-
+    
+    def __str__(self):
+        return self.email
+    
     class Meta:
         db_table = 'user'
 
+User._meta.get_field('email')._unique = True
+User._meta.get_field('username')._unique = True
 
 class Message(models.Model):
     id = models.AutoField(primary_key=True)

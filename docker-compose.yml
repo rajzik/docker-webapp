@@ -18,6 +18,13 @@ services:
     ports:
       - 8080:8080
   
+  migrate:
+    build: ./server
+    command: python3 manage.py migrate
+    volumes:
+      - ./server:/usr/src/webapp
+    depends_on:
+      - pgdb
   server:
     build: ./server
     command: python3 manage.py runserver 0.0.0.0:5555
@@ -27,11 +34,15 @@ services:
       - 5555:5555
     depends_on:
       - pgdb
-  # migrate:
-  #   build: ./server
-  #   command: python3 manage.py migrate
-  #   volumes:
-  #     - ./server:/usr/src/webapp
-  #   depends_on:
-  #     - pgdb
+  web: 
+    build: ./web
+    command: /bin/bash run.sh start
+    ports:
+      - 3000:3000
+      - 35729:35729
+    volumes:
+      - ./web:/usr/src/webapp
+    depends_on:
+      - server
+  
     

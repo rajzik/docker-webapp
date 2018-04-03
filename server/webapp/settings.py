@@ -37,8 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'users',
+    'rest_framework_jwt',
     'graphene_django',
+    'django_filters',
+    'users'
 ]
 
 MIDDLEWARE = [
@@ -49,6 +51,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'users.middleware.JWTAuthenticationMiddleware'
 ]
 
 ROOT_URLCONF = 'webapp.urls'
@@ -56,8 +59,7 @@ ROOT_URLCONF = 'webapp.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')]
-        ,
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -87,6 +89,7 @@ DATABASES = {
     }
 }
 
+AUTH_USER_MODEL = 'users.user'
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
@@ -130,4 +133,8 @@ STATIC_URL = '/static/'
 
 GRAPHENE = {
     'SCHEMA': 'webapp.schema.schema'
+}
+
+JWT_AUTH = {
+    'JWT_ALLOW_REFRESH': True,
 }
