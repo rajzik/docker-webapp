@@ -32,10 +32,10 @@ services:
     depends_on:
       - pgdb
     deploy:
-      replicas: 5
+      replicas: 2
       resources:
         limits:
-          cpus: "0.2"
+          cpus: "0.5"
           memory: 100M
       restart_policy:
         condition: on-failure
