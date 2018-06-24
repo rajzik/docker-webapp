@@ -1,13 +1,13 @@
 from django.contrib.auth import get_user_model
-
+from django.conf import settings
 import graphene
 from graphene_django import DjangoObjectType
-
+from .models import User
 
 class UserType(DjangoObjectType):
     class Meta:
-        model = get_user_model()
-
+        # model = get_user_model()
+        model = User
 
 class CreateUser(graphene.Mutation):
     user = graphene.Field(UserType)

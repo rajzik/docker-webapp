@@ -1,17 +1,13 @@
 version: "3.5"
 
-
-services:
-  
+services:  
   server:
     build: ./server
     # command: python3 manage.py runserver 0.0.0.0:5555
     volumes:
-      - ./server:/usr/src/webapp
+      - ./server:/usr/src/backend
     ports:
       - 5555:5555
-    depends_on:
-      - pgdb
   # migrate:
   #   build: ./server
   #   command: python3 manage.py migrate
