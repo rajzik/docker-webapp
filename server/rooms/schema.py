@@ -5,7 +5,7 @@ from graphene_django import DjangoObjectType
 from graphql import GraphQLError
 
 
-from .models import Room, UserRooms
+from .models import Room, UserRooms, GroupMessage
 
 class RoomType(DjangoObjectType):
     class Meta:
@@ -23,7 +23,7 @@ class JoinRoom(graphene.Mutation):
         if user.is_anonymous:
             raise GraphQLError('You must be logged to join room!')
         
-        room = Room.objects.filter(id=link_id).first()
+        room = Room.objects.filter(id=room_id).first()
         if not room:
             raise Exception('Invalid Room!')
         
@@ -34,6 +34,37 @@ class JoinRoom(graphene.Mutation):
         userRoom.save()
 
         return JoinRoom(room_name=room.room_name)
+
+class SendRoomMessage(graphene.Mutation):
+    room_name = graphene.String()
+    message = graphene.String()
+
+    class Arguments:
+        room_id = graphene.Int()
+        message = graphene.String()
+
+    def mutate(self, info, room_id, message):
+        user = info.context.user
+        if user.is_anonymous:
+            raise GraphQLError('You must be logged to vote!')
+
+        room = Room.objects.filter(id=room_id).first()
+        if not room:
+            raise Exception('Invalid Room!')
+
+        groupMessage = GroupMessage(
+            message=message,
+            from_user=user
+        )
+        groupMessage.save()
+
+        roomMessage = RoomMessages(
+            room=room,
+            room_message=group_message
+        )
+        roomMessage.save()
+
+        return SendRoomMessage(room_name=room.room_name, message=groupMessage.message)
 
         
 
@@ -59,6 +90,8 @@ class CreateRoom(graphene.Mutation):
 class Mutation(graphene.ObjectType):
     create_room = CreateRoom.Field()
     join_room = JoinRoom.Field()
+    send_room_message = SendRoomMessage.Field()
+
 
 class Query(graphene.ObjectType):
     rooms = graphene.List(RoomType)

@@ -7,7 +7,7 @@ class Room(models.Model):
     room_name = models.CharField(max_length=50)
     created = models.DateTimeField(auto_now=True)
     users = models.ManyToManyField(settings.AUTH_USER_MODEL, through='UserRooms')
-    room_messages = models.ManyToManyField('GroupMessage', through='RoomMessages')
+    messages = models.ManyToManyField('GroupMessage', through='RoomMessages')
     admin = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='admin_id', on_delete=models.CASCADE)
 
 class UserRooms(models.Model):
