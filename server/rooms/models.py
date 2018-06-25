@@ -17,7 +17,6 @@ class UserRooms(models.Model):
 
 class RoomMessages(models.Model):
     id = models.AutoField(primary_key=True)
-    from_user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     room = models.ForeignKey('rooms.Room', on_delete=models.CASCADE)
     room_message = models.ForeignKey('GroupMessage', on_delete=models.CASCADE)
 
