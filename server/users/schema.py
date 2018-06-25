@@ -6,7 +6,6 @@ from .models import User
 
 class UserType(DjangoObjectType):
     class Meta:
-        # model = get_user_model()
         model = User
 
 class CreateUser(graphene.Mutation):
