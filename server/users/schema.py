@@ -2,7 +2,7 @@ from django.contrib.auth import get_user_model
 from django.conf import settings
 import graphene
 from graphene_django import DjangoObjectType
-from .models import User
+from .models import User, UserFriends
 
 
 
@@ -27,6 +27,29 @@ class CreateUser(graphene.Mutation):
         user.save()
 
         return CreateUser(user=user)
+
+class AddFriend(graphene.Mutation):
+    user = graphene.Field(UserType)
+
+    class Arguments:
+        user_id = graphene.Int()
+    
+    def mutate(self, info, user_id):
+        user = info.context.user
+        if user.is_anonymous:
+            raise Exception('Not logged!')
+        
+        friend = User.objects.filter(id=user_id).first()
+        if not friend:
+            raise Exception('Invalid friend!')
+        
+        userFriend = UserFriends(user1=user, user2=friend)
+        userFriend.save()
+
+        userFriend2 = UserFriends(user2=user, user1=friend)
+        userFriend2.save()
+
+        return AddFriend(user=friend)
 
 
 class Mutation(graphene.ObjectType):

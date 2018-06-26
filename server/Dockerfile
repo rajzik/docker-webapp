@@ -14,6 +14,6 @@ RUN pip install -r requirements.txt
 COPY . .
 
 
-# CMD ["python3", "/usr/src/backend/manage.py", "makemigrations", "rooms" ]
+# CMD ["python3", "/usr/src/backend/manage.py", "makemigrations", "users" ]
 # CMD ["python3", "/usr/src/backend/manage.py", "migrate" ]
 CMD ["python3", "/usr/src/backend/manage.py", "runserver", "0.0.0.0:5555"]

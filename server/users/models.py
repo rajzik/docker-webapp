@@ -16,13 +16,13 @@ class User(AbstractUser):
 
     messages = models.ManyToManyField(
         'msgs.Message',
-        through='UserMessages',
+        through='msgs.UserMessages',
         through_fields=('user1', 'message')
     )
 
     rooms = models.ManyToManyField(
         'rooms.Room',
-        through='UserRooms'
+        through='rooms.UserRooms'
     )
 
 class UserFriends(models.Model):
@@ -39,17 +39,3 @@ class UserFriends(models.Model):
         )
     created = models.DateTimeField(auto_now=True)
 
-class UserMessages(models.Model):
-    id = models.AutoField(primary_key=True)
-    user1 = models.ForeignKey(
-        User, related_name='user1_id', on_delete=models.CASCADE)
-    user2 = models.ForeignKey(
-        User, related_name='user2_id', on_delete=models.CASCADE)
-    message = models.ForeignKey('msgs.Message', on_delete=models.CASCADE)
-
-
-class UserRooms(models.Model):
-    id = models.AutoField(primary_key=True)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    room = models.ForeignKey('rooms.Room', on_delete=models.CASCADE)
-    is_admin = models.BooleanField()

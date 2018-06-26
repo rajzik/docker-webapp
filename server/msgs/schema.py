@@ -28,7 +28,6 @@ class Query(graphene.ObjectType):
         if user.is_anonymous:
             raise GraphQLError('You must be logged to see messages!')
         filter = (
-            Q(from_user=user) |
-            Q(to_user=user)
+            Q(from_user=user)
         )
         return Message.objects.get(filter)
