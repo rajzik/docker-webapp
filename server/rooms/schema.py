@@ -5,7 +5,7 @@ from graphene_django import DjangoObjectType
 from graphql import GraphQLError
 
 
-from .models import Room, UserRooms, GroupMessage
+from .models import Room, UserRooms, GroupMessage, RoomMessages
 
 class RoomType(DjangoObjectType):
     class Meta:
@@ -60,7 +60,7 @@ class SendRoomMessage(graphene.Mutation):
 
         roomMessage = RoomMessages(
             room=room,
-            room_message=group_message
+            room_message=groupMessage
         )
         roomMessage.save()
 
