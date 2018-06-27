@@ -1,0 +1,36 @@
+
+/*
+    This is main css file with default styling
+    Also to make code cleaner in ./styles we have our modules.
+*/
+@import './styles/variables.css';
+@import './styles/fonts.css';
+@import './styles/reboot.css';
+
+body {
+    margin: 0;
+    padding: 0;
+    max-width: 2000px;
+    font-family: Campton;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-size: 14px;
+    text-align: left;
+}
+
+h1 {
+    font-size: 1.875em;
+}
+
+h2 {
+    font-size: 1.5625em;
+}
+
+/*
+    Due to https://github.com/css-modules/css-modules global scope not working anymore
+*/
+
+:global .test {
+        font-size: 20rem;
+    }
+

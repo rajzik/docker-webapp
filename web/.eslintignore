@@ -1,0 +1,12 @@
+# Own code which does not need lint
+scripts/
+config/
+# Third party
+**/node_modules
+
+
+
+# Build products
+build/
+coverage/
+fixtures/

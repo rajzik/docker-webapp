@@ -1,0 +1,30 @@
+FROM node:10 as builder
+
+WORKDIR /usr/src/app
+
+# Use yarn instead
+RUN npm install -g yarn
+RUN npm install -g flow-bin
+
+COPY package*.json ./
+
+# Installing dependecies
+RUN yarn
+
+# Copy code
+# Except files from .dockerignore
+COPY . .
+
+# Test first
+RUN yarn test
+
+RUN yarn build
+
+
+FROM nginx:alpine
+
+COPY --from=builder /usr/src/app/build /usr/share/nginx/html
+
+EXPOSE 80
+
+CMD [ "nginx", "-g", "daemon off;" ]

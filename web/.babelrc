@@ -1,0 +1,51 @@
+{
+    "presets": [
+        [
+            "env",
+            {
+                "targets": {
+                    "browsers": [
+                        "last 2 versions"
+                    ]
+                }
+            }
+        ],
+        "react",
+        "flow"
+    ],
+    "plugins": [
+        "syntax-dynamic-import",
+        "transform-decorators-legacy",
+        "transform-class-properties",
+        [
+            "transform-object-rest-spread",
+            {
+                "useBuiltIns": true
+            }
+        ],
+        [
+            "transform-runtime",
+            {
+                "polyfill": false,
+                "regenerator": true
+            }
+        ],
+        [
+            "module-resolver",
+            {
+                "alias": {
+                    "components": "./src/components",
+                    "actions": "./src/actions",
+                    "constants": "./src/constants",
+                    "containers": "./src/containers",
+                    "pages": "./src/pages",
+                    "styles": "./src/styles",
+                    "types": "./src/types",
+                    "utilities": "./src/utilities",
+                    "reducers": "./src/reducers",
+                    "context": "./src/context"
+                }
+            }
+        ]
+    ]
+}

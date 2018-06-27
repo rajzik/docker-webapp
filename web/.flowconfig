@@ -1,0 +1,23 @@
+[ignore]
+
+[include]
+
+[libs]
+
+[lints]
+
+[options]
+esproposal.decorators=ignore
+module.name_mapper.extension='png' -> '<PROJECT_ROOT>/flow/WebpackAsset.js.flow'
+module.name_mapper.extension='jpg' -> '<PROJECT_ROOT>/flow/WebpackAsset.js.flow'
+module.name_mapper.extension='svg' -> '<PROJECT_ROOT>/flow/WebpackAsset.js.flow'
+module.file_ext=.css
+module.file_ext=.scss
+module.file_ext=.sass
+module.file_ext=.scss.module
+module.name_mapper='^Actions' ->'<PROJECT_ROOT>/src/actions'
+module.name_mapper='^Components' ->'<PROJECT_ROOT>/src/components'
+module.name_mapper='^Containers' ->'<PROJECT_ROOT>/src/containers'
+module.name_mapper='^Reducer' ->'<PROJECT_ROOT>/src/reducer'
+module.name_mapper='^Utils' ->'<PROJECT_ROOT>/src/utils'
+[strict]
