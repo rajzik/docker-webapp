@@ -22,7 +22,7 @@
         "precommit": "npm test",
         "start": "node scripts/start.js",
         "build": "node scripts/build.js",
-        "test": "npm run lint && npm run flow && jest --env=jsdom",
+        "test": "npm run lint && npm run flow",
         "coverage": "jest --env=jsdom --coverage",
         "flow": "node ./scripts/tasks/flow.js",
         "lint": "node ./scripts/tasks/eslint.js"

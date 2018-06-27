@@ -1,7 +1,6 @@
 // @flow
 import React from 'react';
 import type { BasicComponent } from 'types';
-
 import { pageContainer } from './pagecontainer.css';
 
 

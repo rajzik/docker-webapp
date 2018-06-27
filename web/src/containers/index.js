@@ -1,8 +1,7 @@
 // @flow
 // @ts-check
 
-import Example from './Example';
+import Login from './Login';
+import Register from './Register';
 
-// TODO: Remove next line when more components are exported
-// eslint-disable-next-line
-export { Example };
+export { Login, Register };

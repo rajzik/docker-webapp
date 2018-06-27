@@ -1,19 +1,19 @@
 // @flow
 
-import React from 'react';
 import classnames from 'classnames';
-
+import React from 'react';
 import { button } from './button.css';
 
+
 type ButtonType = {
-    test: number,
+    children: mixed,
     onClick: () => void
 };
 
-export default function Button({ test, onClick }: ButtonType) {
+export default function Button({ children, onClick }: ButtonType) {
     return (
-        <button className={classnames(button, 'test')} onClick={onClick}>
-            {test}
+        <button className={classnames(button)} onClick={onClick}>
+            {children}
         </button>
     );
 }

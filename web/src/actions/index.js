@@ -2,6 +2,6 @@
 // @ts-check
 
 import { example, increment } from './example';
-import { login } from './auth';
+import { login, register } from './auth';
 
-export { example, increment, login };
+export { example, increment, login, register };

@@ -9,6 +9,7 @@ const privateRoutes = [
         path: '/',
         component: null,
         icon: 'test',
+        isPrivate: true,
         otherProps: {
             exact: true,
         },

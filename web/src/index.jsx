@@ -1,17 +1,14 @@
 // @flow
 // @ts-check
 
+import { Router } from 'components';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import registerServiceWorker from './registerServiceWorker';
-
-import { Router } from './components';
-
-import { init } from './utilities';
-
-
+import { init } from 'utilities';
 // This needs to be latest import!
 import './index.css';
+import registerServiceWorker from './registerServiceWorker';
+
 
 // Using promise for dynamic import in init, where dependencies are imported depend on env!
 init().then(({ store }) => {

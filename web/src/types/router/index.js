@@ -6,7 +6,8 @@ import type { Match, Location, RouterHistory } from 'react-router-dom';
 type RouteProps = {
     path: string,
     component: any,
-    otherProps: mixed
+    otherProps: mixed,
+    isPrivate?: boolean,
 };
 
 type RouterProps = {

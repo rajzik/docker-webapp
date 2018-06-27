@@ -1,15 +1,13 @@
 // @flow
 // @ts-check
 
+import { Register } from 'containers';
 import React from 'react';
 
 
-export default function Register() {
+export default function RegisterPage() {
     return (
-        <div>
-            <h1>
-                Register
-            </h1>
-        </div>
+        <Register />
     );
 }
+
