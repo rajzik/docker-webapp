@@ -20,14 +20,14 @@ const publicRoutes = [
         path: '/login',
         component: Login,
         otherProps: {
-            // exact: true,
+            exact: true,
         },
     },
     {
         path: '/register',
         component: Register,
         otherProps: {
-            // exact: true,
+            exact: true,
         },
     },
     // This needs to be last

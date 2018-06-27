@@ -1,10 +1,10 @@
 // @flow
 import { register } from 'actions';
 import { Button, Input } from 'components';
+import PublicContainer from 'components/PublicContainer';
 import React, { Component } from 'react';
 import connect from 'react-redux/lib/connect/connect';
 import Redirect from 'react-router-dom/Redirect';
-import { innerContainer, mainContainer } from './login.css';
 
 type RegisterType = {
     dispatch: (args: any) => void,
@@ -32,16 +32,14 @@ export default class Register extends Component<RegisterType> {
         const { authenticated } = this.props;
         if (authenticated) return <Redirect to="/" />;
         return (
-            <div className={mainContainer}>
-                <div className={innerContainer}>
-                    <Input type="text" onChange={this.inputChange('username')} />
-                    <Input type="password" onChange={this.inputChange('password')} />
-                    <Input type="text" onChange={this.inputChange('email')} />
-                    <Button onClick={this.Register}>
-                        Register
-                    </Button>
-                </div>
-            </div>
+            <PublicContainer>
+                <Input type="text" onChange={this.inputChange('username')} />
+                <Input type="password" onChange={this.inputChange('password')} />
+                <Input type="text" onChange={this.inputChange('email')} />
+                <Button onClick={this.Register}>
+                    Register
+                </Button>
+            </PublicContainer>
         );
     }
 }

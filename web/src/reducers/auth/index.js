@@ -12,8 +12,6 @@ const defaultState = {
 };
 
 const authReducer = (state: AuthType = defaultState, action: ActionType) => {
-    // eslint-disable-next-line
-    console.log(action);
     switch (action.type) {
     case AUTH_POST:
         return {
