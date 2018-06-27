@@ -1,7 +1,7 @@
 // @flow
 // @ts-check
 
-import { NotFound } from 'pages';
+import { NotFound, Login, Register } from 'pages';
 
 
 const privateRoutes = [
@@ -18,16 +18,16 @@ const privateRoutes = [
 const publicRoutes = [
     {
         path: '/login',
-        component: NotFound,
+        component: Login,
         otherProps: {
-            exact: true,
+            // exact: true,
         },
     },
     {
         path: '/register',
-        component: NotFound,
+        component: Register,
         otherProps: {
-            exact: true,
+            // exact: true,
         },
     },
     // This needs to be last
