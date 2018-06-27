@@ -8,6 +8,13 @@ services:
       - ./server:/usr/src/backend
     ports:
       - 5555:5555
+  web:
+    build: ./web
+    command: start
+    volumes:
+      - ./web:/usr/src/app
+    ports:
+      - 3000:3000
   # migrate:
   #   build: ./server
   #   command: python3 manage.py migrate

@@ -9,7 +9,6 @@
         "react": "^16.4.0",
         "react-dev-utils": "^5.0.1",
         "react-dom": "^16.4.0",
-        "react-intl": "^2.4.0",
         "react-redux": "^5.0.7",
         "react-responsive": "^4.1.0",
         "react-router-dom": "^4.3.1",

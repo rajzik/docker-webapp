@@ -8,7 +8,7 @@ const privateRoutes = [
     {
         path: '/',
         component: null,
-        icon: 'vision',
+        icon: 'test',
         otherProps: {
             exact: true,
         },

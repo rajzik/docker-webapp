@@ -4,7 +4,6 @@
     Also to make code cleaner in ./styles we have our modules.
 */
 @import './styles/variables.css';
-@import './styles/fonts.css';
 @import './styles/reboot.css';
 
 body {
