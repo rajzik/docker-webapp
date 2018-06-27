@@ -15,6 +15,7 @@ const curryMeWithAuth = (authenticated: boolean) => ({
 }: RouteProps) => (
     isPrivate ?
         <PrivateRoute
+            key={path}
             path={path}
             component={component}
             authenticated={authenticated}

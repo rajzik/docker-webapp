@@ -1,12 +1,12 @@
 // @flow
 
 import NotFound from './NotFound';
-import Login from './Login';
-import Register from './Register';
+import LoginPage from './LoginPage';
+import RegisterPage from './RegisterPage';
 
 export {
     NotFound,
-    Login,
-    Register,
+    LoginPage,
+    RegisterPage,
 };
 

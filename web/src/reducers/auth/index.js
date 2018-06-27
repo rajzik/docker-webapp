@@ -9,9 +9,12 @@ type ActionType = any;
 
 const defaultState = {
     authenticated: false,
+    loading: false,
+    token: null,
 };
 
 const authReducer = (state: AuthType = defaultState, action: ActionType) => {
+    console.log(state, action);
     switch (action.type) {
     case AUTH_POST:
         return {

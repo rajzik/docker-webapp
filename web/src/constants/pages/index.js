@@ -1,7 +1,7 @@
 // @flow
 // @ts-check
 
-import { NotFound, Login, Register } from 'pages';
+import { NotFound, LoginPage, RegisterPage } from 'pages';
 
 
 const privateRoutes = [
@@ -18,14 +18,14 @@ const privateRoutes = [
 const publicRoutes = [
     {
         path: '/login',
-        component: Login,
+        component: LoginPage,
         otherProps: {
             exact: true,
         },
     },
     {
         path: '/register',
-        component: Register,
+        component: RegisterPage,
         otherProps: {
             exact: true,
         },
