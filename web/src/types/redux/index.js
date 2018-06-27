@@ -5,5 +5,10 @@ type ExampleType = {
     bar: boolean,
     baz: string,
 };
+
+type AuthType = {
+    authenticated: boolean,
+};
+
 // eslint-disable-next-line
-export type { ExampleType };
+export type { ExampleType, AuthType };

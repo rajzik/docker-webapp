@@ -25,7 +25,9 @@ SECRET_KEY = 'kfl*#(@1+m-=xh%%xncp@g1iau6_9=fjameefc)2@4snx8w@w1'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '*'
+]
 
 
 # Application definition
@@ -37,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
     'graphene_django',
     'users',
     'msgs',
@@ -73,6 +76,8 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'webapp.wsgi.application'
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 
 # Database

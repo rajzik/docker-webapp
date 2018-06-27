@@ -12,12 +12,23 @@ const privateRoutes = [
         otherProps: {
             exact: true,
         },
-        linkProps: {
-            iconClassName: 'vision-icon',
-        },
     },
 ];
 const publicRoutes = [
+    {
+        path: '/login',
+        component: NotFound,
+        otherProps: {
+            exact: true,
+        },
+    },
+    {
+        path: '/register',
+        component: NotFound,
+        otherProps: {
+            exact: true,
+        },
+    },
     // This needs to be last
     // It catches every other route which isn't declared
     {

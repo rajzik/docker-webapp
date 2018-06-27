@@ -54,7 +54,7 @@ class AddFriend(graphene.Mutation):
 
 class Mutation(graphene.ObjectType):
     create_user = CreateUser.Field()
-
+    add_friend = AddFriend.Field()
 
 class Query(graphene.ObjectType):
     me = graphene.Field(UserType)

@@ -1,7 +1,12 @@
 // @flow
 
 import NotFound from './NotFound';
+import Login from './Login';
+import Register from './Register';
 
-// eslint-disable-next-line
-export { NotFound };
+export {
+    NotFound,
+    Login,
+    Register,
+};
 
