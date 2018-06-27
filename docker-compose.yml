@@ -7,7 +7,9 @@ services:
       - 80:80
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
-
+    depends:
+      - backend
+      - web
   backend:
     build: ./server
     # command: python3 manage.py runserver 0.0.0.0:5555

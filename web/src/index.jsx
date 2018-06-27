@@ -1,9 +1,10 @@
 // @flow
 // @ts-check
 
-import { Router } from 'components';
+import { Router } from 'containers';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 import { init } from 'utilities';
 // This needs to be latest import!
 import './index.css';
@@ -16,7 +17,9 @@ init().then(({ store }) => {
     if (element !== null) {
         ReactDOM.render(
             (
-                <Router store={store} />
+                <Provider store={store}>
+                    <Router />
+                </Provider>
             ), element,
         );
     }

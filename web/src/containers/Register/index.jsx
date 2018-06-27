@@ -1,7 +1,6 @@
 // @flow
 import { register } from 'actions';
-import { Button, Input } from 'components';
-import PublicContainer from 'components/PublicContainer';
+import { Button, Input, Loading, PublicContainer } from 'components';
 import React, { Component } from 'react';
 import connect from 'react-redux/lib/connect/connect';
 import Redirect from 'react-router-dom/Redirect';
@@ -9,9 +8,13 @@ import Redirect from 'react-router-dom/Redirect';
 type RegisterType = {
     dispatch: (args: any) => void,
     authenticated: boolean,
+    loading: boolean,
 };
 
-@connect(({ auth: { authenticated } }) => ({ authenticated }), dispatch => dispatch)
+@connect(
+    ({ auth: { authenticated, loading } }) => ({ authenticated, loading }),
+    dispatch => ({ dispatch }),
+)
 export default class Register extends Component<RegisterType> {
     state = {
         username: '',
@@ -29,7 +32,8 @@ export default class Register extends Component<RegisterType> {
         if (username && password && email) this.props.dispatch(register(this.state));
     }
     render() {
-        const { authenticated } = this.props;
+        const { authenticated, loading } = this.props;
+        if (loading) return <Loading />;
         if (authenticated) return <Redirect to="/" />;
         return (
             <PublicContainer>

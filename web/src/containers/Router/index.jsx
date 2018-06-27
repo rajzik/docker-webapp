@@ -3,11 +3,11 @@
 
 import { PrivateRoute } from 'components';
 import { paths } from 'constants';
-import React from 'react';
-import { Provider } from 'react-redux';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import React, { Component } from 'react';
+import connect from 'react-redux/lib/connect/connect';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import type { RouteProps, RouterProps } from 'types';
+import type { RouteProps } from 'types';
 
 
 const curryMeWithAuth = (authenticated: boolean) => ({
@@ -24,23 +24,23 @@ const curryMeWithAuth = (authenticated: boolean) => ({
         <Route key={path} path={path} component={component} {...otherProps} />
 );
 
-
-const Root = ({ store }: RouterProps) => {
-    // console.log(store.getState(), );
-    // store.dispatch(login({ username: 'test1', password: 'test' }))
-    const state = store.getState();
-    const mapPathsToRoutes = curryMeWithAuth(state.auth.authenticated);
-    return (
-        <Provider store={store}>
-            <Router>
+type RouterProps = {
+    authenticated: boolean,
+};
+@connect(({ auth: { authenticated } }) => ({ authenticated }))
+export default class Router extends Component<RouterProps> {
+    render() {
+        const { authenticated } = this.props;
+        const mapPathsToRoutes = curryMeWithAuth(authenticated);
+        return (
+            <BrowserRouter>
                 <Switch>
                     {
                         paths.map(mapPathsToRoutes)
                     }
                 </Switch>
-            </Router>
-        </Provider>
-    );
-};
+            </BrowserRouter>
+        );
+    }
+}
 
-export default Root;
