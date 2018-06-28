@@ -20,9 +20,13 @@ const messageQuery = `
 {
     me{
         messages{
+            id
             created
             message
             fromUser {
+                id
+            }
+            userSet {
                 id
             }
         }

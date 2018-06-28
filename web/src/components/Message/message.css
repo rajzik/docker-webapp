@@ -1,0 +1,19 @@
+
+.msg {
+    margin: 10px;
+    padding: 10px;
+    border-radius: 3px;
+    max-width: 75%;
+}
+
+.me {
+    background-color: #fefefe;
+    color: black;
+    justify-self: start;
+}
+
+.friend {
+    background-color: rgba(0, 0, 255, .75);
+    color: white;
+    justify-self: end;
+}

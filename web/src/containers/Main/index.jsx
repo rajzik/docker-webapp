@@ -1,19 +1,20 @@
 // @flow
 
 import PageContainer from 'components/PageContainer';
+import { Friends, MessageBox, Messages, Nav } from 'containers';
 import React, { Component } from 'react';
 import connect from 'react-redux/lib/connect/connect';
-import { Friends, Messages, MessageBox, Nav } from 'containers';
 
 @connect()
 export default class Main extends Component {
     render() {
+        const { props } = this;
         return (
             <PageContainer>
-                <Nav />
-                <Friends />
-                <Messages />
-                <MessageBox />
+                <Nav {...props} />
+                <Friends {...props} />
+                <Messages {...props} />
+                <MessageBox {...props} />
             </PageContainer>
         );
     }

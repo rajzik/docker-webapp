@@ -1,11 +1,11 @@
 // @flow
 
-import React, { Component } from 'react';
-import connect from 'react-redux/lib/connect/connect';
 import { getFriends } from 'actions';
 import { Friend } from 'components';
-
+import React, { Component } from 'react';
+import connect from 'react-redux/lib/connect/connect';
 import { friend } from './friends.css';
+
 
 type FriendsProps = {
     friends: Array<mixed>,
@@ -19,7 +19,6 @@ export default class Friends extends Component<FriendsProps> {
     }
     render() {
         const { friends } = this.props;
-        console.log(friends);
         return (
             <div className={friend}>
                 {friends.map(item => <Friend key={`friend-${item.id}`} {...item} />)}

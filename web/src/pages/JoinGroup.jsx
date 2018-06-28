@@ -1,10 +1,10 @@
 // @flow
 
-import React from 'react';
 import { Main } from 'containers';
+import React from 'react';
 
-export default function MainPage() {
+export default function MainPage(props: any) {
     return (
-        <Main />
+        <Main {...props} />
     );
 }
