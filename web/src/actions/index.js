@@ -4,7 +4,7 @@
 import { login, register } from './auth';
 import { getMessages, sendMessage, startFetching } from './messages';
 import { addFriend, getFriends } from './friends';
-import { createRoom, getGroups } from './groups';
+import { createRoom, getGroups, joinRoom, leaveRoom } from './groups';
 
 export {
     login,
@@ -16,4 +16,6 @@ export {
     startFetching,
     createRoom,
     getGroups,
+    joinRoom,
+    leaveRoom,
 };

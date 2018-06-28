@@ -11,6 +11,7 @@ const defaultState = {
     authenticated: false,
     loading: false,
     token: null,
+    me: null,
 };
 
 const authReducer = (state: AuthType = defaultState, action: ActionType) => {
@@ -20,6 +21,7 @@ const authReducer = (state: AuthType = defaultState, action: ActionType) => {
             ...state,
             authenticated: true,
             token: action.login.token,
+            me: action.me,
             loading: false,
         };
     case AUTH_LOADING:

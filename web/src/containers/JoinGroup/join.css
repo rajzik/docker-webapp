@@ -1,0 +1,11 @@
+
+
+.form {
+    display: grid;
+    grid-column-gap: 10px;
+    padding: 10px;
+    position: sticky;
+    bottom: 0;
+    grid-template-columns: auto 200px;
+    background-color: rgba(255, 255, 255, .7);
+}

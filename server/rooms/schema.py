@@ -110,7 +110,11 @@ class CreateRoom(graphene.Mutation):
             admin=user
         )
         room.save()
-
+        userRoom = UserRooms(
+            user=user,
+            room=room
+        )
+        userRoom.save()
         return CreateRoom(room_name=room_name)
 
 

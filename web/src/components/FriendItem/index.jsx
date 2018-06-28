@@ -3,30 +3,30 @@
 import React from 'react';
 import { Button } from 'components';
 
-import { row } from './group-item.css';
+import { row } from './friend-item.css';
 
 type GroupItemProps = {
-    roomName: string,
-    onJoin: () => void,
-    onLeave: () => void,
+    username: string,
+    onFriend: () => void,
+    onUnfriend: () => void,
     users: Array<mixed>,
     userId: string,
 };
 
 export default ({
-    roomName, users, userId, onJoin, onLeave,
+    username, users, userId, onFriend, onUnfriend,
 }: GroupItemProps) => {
     const isThere = users.some(user => user.id === userId);
     return (
         <div className={row}>
-            <p>{roomName}</p>
+            <p>{username}</p>
             {
                 !isThere ?
-                    <Button onClick={onJoin}>
-                        Join
+                    <Button onClick={onFriend}>
+                        Make friend
                     </Button> :
-                    <Button onClick={onLeave}>
-                        Leave
+                    <Button onClick={onUnfriend}>
+                        Unfriend
                     </Button>
             }
         </div>

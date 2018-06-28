@@ -31,6 +31,14 @@ const LoginQuery = `
     }
 `;
 
+const meQuery = `
+{
+    me {
+        id
+    }
+}
+`;
+
 function register(vars: RegisterType) {
     return async (dispatch: (args: any) => void) => {
         dispatch({
@@ -71,6 +79,7 @@ function login(vars: LoginType) {
             dispatch({
                 type: AUTH_POST,
                 ...await client.mutate(LoginQuery, vars),
+                ...await client.query(meQuery),
             });
         } catch (e) {
             dispatch({

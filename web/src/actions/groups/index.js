@@ -9,17 +9,33 @@ const CreateGroupQ = `
     }
   }`;
 
-const groupQuery = `
-{
-    rooms {
-        id
-        roomName
-        admin {
-           id
-        }
+const JoinGroupQ = `
+($roomId:Int!){
+    joinRoom(roomId:$roomId) {
+      roomName
     }
 }
 `;
+const leaveGroupQ = `
+($roomId:Int!){
+    leaveRoom(roomId: $roomId) {
+        success
+    }
+}
+`;
+
+const groupQuery = `
+{
+    rooms {
+      id
+      roomName
+      users {
+        id
+      }
+    }
+}
+`;
+
 
 function getGroups() {
     return async (dispatch: (args: any) => void) => {
@@ -35,6 +51,8 @@ function getGroups() {
         } catch (e) {
             dispatch({
                 type: GROUP_ERROR,
+
+                ...e,
             });
         }
     };
@@ -52,10 +70,46 @@ function createRoom(vars: {
         } catch (e) {
             dispatch({
                 type: GROUP_ERROR,
+                ...e,
             });
         }
         dispatch(getGroups());
     };
 }
 
-export { getGroups, createRoom };
+function joinRoom(roomId) {
+    return async (dispatch: (args: any) => void) => {
+        dispatch({
+            type: GROUP_LOADING,
+        });
+        try {
+            await client.mutate(JoinGroupQ, { roomId });
+            dispatch(getGroups());
+        } catch (e) {
+            dispatch({
+                type: GROUP_ERROR,
+                ...e,
+            });
+        }
+    };
+}
+
+
+function leaveRoom(roomId) {
+    return async (dispatch: (args: any) => void) => {
+        dispatch({
+            type: GROUP_LOADING,
+        });
+        try {
+            await client.mutate(leaveGroupQ, { roomId });
+            dispatch(getGroups());
+        } catch (e) {
+            dispatch({
+                type: GROUP_ERROR,
+            });
+        }
+    };
+}
+
+
+export { getGroups, createRoom, joinRoom, leaveRoom };
