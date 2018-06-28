@@ -1,67 +1,13 @@
-/*
-    Mobile first design
-*/
+
 .page-container {
     width: 100%;
-    min-height: 100vh;
+    height: 100vh;
     display: grid;
-    grid-template-columns: auto;
-    grid-template-rows: 3.75rem 3.75rem auto 3.75rem;
+    grid-template-columns: 20% auto;
+    grid-template-rows: 100px auto 100px;
     grid-template-areas:
-        "logo"
-        "header"
-        "content"
-        "menu";
-
-}
-
-.logo {
-    grid-area: logo;
-    padding: 0 1.25rem;
-}
-
-.menu {
-    grid-area: menu;
-    position: sticky;
-    bottom: 0;
-    z-index: 20;
-}
-
-.header {
-    grid-area: header;
-    position: sticky;
-    top: 0;
-    z-index: 20;
-}
-
-.content {
-    grid-area: content;
-    padding: 1.25rem;
-}
-
-@media only screen  and (min-width : 768px) {
-
-    .page-container {
-        grid-template-columns: 3.75rem auto;
-        grid-template-rows: 9.375rem auto;
-        grid-template-areas:
-            "menu header"
-            "menu content";
-    }
-
-    .menu {
-        position: sticky;
-        top: 0;
-        height: 100vh;
-    }
-
-    .header {
-        position: sticky;
-        top: 0;
-    }
-
-    .content {
-        padding: 2.5rem;
-    }
+        "friends nav"
+        "friends chat"
+        "friends message";
 
 }

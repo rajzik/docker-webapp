@@ -1,15 +1,6 @@
 version: "3.5"
 
 services:
-  nginx:
-    image: "nginx:alpine"
-    ports:
-      - 80:80
-    volumes:
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
-    depends_on:
-      - backend
-      - web
   backend:
     build: ./server
     # command: python3 manage.py runserver 0.0.0.0:5555
@@ -24,11 +15,12 @@ services:
       - ./web:/usr/src/app
     ports:
       - 3000:3000
-
-  # migrate:
-  #   build: ./server
-  #   command: python3 manage.py migrate
-  #   volumes:
-  #     - ./server:/usr/src/webapp
-  #   depends_on:
-  #     - pgdb
+  nginx:
+    image: "nginx:alpine"
+    ports:
+      - 80:80
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - backend
+      - web
