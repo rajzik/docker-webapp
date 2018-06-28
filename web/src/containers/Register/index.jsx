@@ -1,6 +1,6 @@
 // @flow
 import { register } from 'actions';
-import { Button, Input, Loading, PublicContainer } from 'components';
+import { Button, Input, Loading, PublicContainer, Link } from 'components';
 import React, { Component } from 'react';
 import connect from 'react-redux/lib/connect/connect';
 import Redirect from 'react-router-dom/Redirect';
@@ -33,16 +33,22 @@ export default class Register extends Component<RegisterType> {
     }
     render() {
         const { authenticated, loading } = this.props;
-        if (loading) return <Loading />;
+        if (loading) return <PublicContainer><Loading /></PublicContainer>;
         if (authenticated) return <Redirect to="/" />;
         return (
             <PublicContainer>
-                <Input type="text" onChange={this.inputChange('username')} />
-                <Input type="password" onChange={this.inputChange('password')} />
-                <Input type="text" onChange={this.inputChange('email')} />
+                <Input placeholder="username" type="text" onChange={this.inputChange('username')} />
+                <Input placeholder="password" type="password" onChange={this.inputChange('password')} />
+                <Input placeholder="email" type="text" onChange={this.inputChange('email')} />
                 <Button onClick={this.Register}>
                     Register
                 </Button>
+                <p>
+                    Already registered you can
+                    <Link to="/login">
+                        login
+                    </Link>
+                </p>
             </PublicContainer>
         );
     }

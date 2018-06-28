@@ -1,70 +1,69 @@
 // @flow
 // @ts-check
 
-import { AUTH_POST, AUTH_LOADING, AUTH_ERROR, AUTH_REGISTER, client } from 'constants';
-
-type LoginType = {
-    username: string,
-    password: string,
-};
-type RegisterType = LoginType | {
-    email: string,
-};
+import {
+    FRIENDS_LOADING,
+    FRIENDS_GET,
+    FRIENDS_ERROR,
+    FRIENDS_ADD,
+    client,
+} from 'constants';
 
 
-const RegisterQuery = `
-mutation ($username:String!, $password: String!, $email: String!) {
-    createUser(username:$username, password:$password, email:$email) {
-      user {
+const FriendsQ = `
+{
+    me {
+        friends {
+            id,
+            username,
+            email
+        }
+    }
+}
+`;
+
+const AddFriendQ = `
+($user:Int!){
+    addFriend(userId:$user) {
+      user{
         id,
-        username,
-        email
+        username
       }
     }
   }`;
 
-const LoginQuery = `
-    ($username: String!, $password: String!){
-        login(username: $username, password: $password) {
-            token
-        }
-    }
-`;
-
-function register(vars: RegisterType) {
+function getFriends() {
     return async (dispatch: (args: any) => void) => {
-        dispatch({
-            type: AUTH_LOADING,
-        });
+        dispatch({ type: FRIENDS_LOADING });
+        const { me: { friends } } = await client.query(FriendsQ);
         try {
             dispatch({
-                type: AUTH_REGISTER,
-                ...await client.mutate(RegisterQuery, vars),
+                type: FRIENDS_GET,
+                friends,
             });
         } catch (e) {
             dispatch({
-                type: AUTH_ERROR,
+                type: FRIENDS_ERROR,
             });
         }
     };
 }
 
-function login(vars: LoginType) {
+function addFriend(args: {user: number}) {
     return async (dispatch: (args: any) => void) => {
-        dispatch({
-            type: AUTH_LOADING,
-        });
+        dispatch({ type: FRIENDS_LOADING });
         try {
             dispatch({
-                type: AUTH_POST,
-                ...await client.mutate(LoginQuery, vars),
+                type: FRIENDS_ADD,
+                ...await client.mutate(AddFriendQ, args),
             });
         } catch (e) {
             dispatch({
-                type: AUTH_ERROR,
+                type: FRIENDS_ERROR,
             });
         }
     };
 }
 
-export { login, register };
+
+export { getFriends, addFriend };

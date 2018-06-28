@@ -1,0 +1,15 @@
+
+.friend-link {
+    display: grid;
+    grid-template-rows: 50% 50%;
+    grid-row-gap: 7px;
+    padding: 10px;
+    color: black;
+    border-bottom: 1px solid #aaa;
+}
+.active-link {
+    background-color: rgba(0, 0, 255, .3);
+}
+.friend-link p {
+    margin: auto 0;
+}

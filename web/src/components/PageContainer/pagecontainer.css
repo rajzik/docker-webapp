@@ -4,7 +4,7 @@
     height: 100vh;
     display: grid;
     grid-template-columns: 20% auto;
-    grid-template-rows: 100px auto 100px;
+    grid-template-rows: 50px 1fr auto;
     grid-template-areas:
         "friends nav"
         "friends chat"

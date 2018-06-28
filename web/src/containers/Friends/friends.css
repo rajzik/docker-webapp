@@ -1,0 +1,9 @@
+
+.friend {
+    grid-area: friends;
+    border-right: 1px solid #999;
+    position: sticky;
+    top: 0;
+    left: 0;
+    height: 100vh;
+}

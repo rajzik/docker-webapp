@@ -1,33 +1,29 @@
 // @flow
-import { AUTH_POST, AUTH_LOADING, AUTH_REGISTER } from 'constants';
-
-import type { AuthType } from 'types';
+import { MESSAGES_GET, MESSAGES_LOADING, MESSAGES_ERROR } from 'constants';
 
 
 type ActionType = any;
 
 
 const defaultState = {
-    authenticated: false,
     loading: false,
-    token: null,
+    messages: [],
 };
 
-const authReducer = (state: AuthType = defaultState, action: ActionType) => {
+const authReducer = (state: any = defaultState, action: ActionType) => {
     switch (action.type) {
-    case AUTH_POST:
+    case MESSAGES_GET:
         return {
             ...state,
-            authenticated: true,
-            token: action.login.token,
+            messages: action.messages,
             loading: false,
         };
-    case AUTH_LOADING:
+    case MESSAGES_LOADING:
         return {
             ...state,
             loading: true,
         };
-    case AUTH_REGISTER:
+    case MESSAGES_ERROR:
         return {
             ...state,
             loading: false,

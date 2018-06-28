@@ -14,6 +14,15 @@ const privateRoutes = [
             exact: true,
         },
     },
+    {
+        path: '/:id(\\d+)',
+        component: MainPage,
+        icon: 'test',
+        isPrivate: true,
+        otherProps: {
+            exact: true,
+        },
+    },
 ];
 const publicRoutes = [
     {

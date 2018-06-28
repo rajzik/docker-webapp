@@ -2,7 +2,19 @@
     background-color: transparent;
     border-radius: 20px;
     height: 40px;
-    font-size: 20px;
     text-align: center;
     border: 1px solid #333333;
+    cursor: pointer;
+    outline: none;
+}
+
+.flat {
+    border: 0;
+    font-size: 20px;
+    background-color: transparent;
+    cursor: pointer;
+    outline: none;
+    color: #fff;
+    background-color: #1473e6;
+    font-weight: 500;
 }

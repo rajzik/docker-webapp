@@ -2,18 +2,23 @@
 
 import classnames from 'classnames';
 import React from 'react';
-import { button } from './button.css';
+import styles from './button.css';
 
 
 type ButtonType = {
     children: mixed,
-    onClick: () => void
+    onClick: () => void,
+    type: string
 };
 
-export default function Button({ children, onClick }: ButtonType) {
+export default function Button({ children, onClick, type = 'button' }: ButtonType) {
     return (
-        <button className={classnames(button)} onClick={onClick}>
+        <button className={classnames(styles[type])} onClick={onClick}>
             {children}
         </button>
     );
+}
+
+export function FlatButton(props) {
+    return <Button {...props} type="flat" />;
 }

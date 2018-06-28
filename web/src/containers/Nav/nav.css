@@ -1,0 +1,10 @@
+
+.nav {
+    grid-area: nav;
+    position: sticky;
+    top: 0;
+    border-bottom: 1px solid #333;
+    display: flex;
+    flex-direction: row;
+
+}

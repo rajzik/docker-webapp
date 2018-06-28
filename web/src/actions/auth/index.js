@@ -13,7 +13,7 @@ type RegisterType = LoginType | {
 
 
 const RegisterQuery = `
-mutation ($username:String!, $password: String!, $email: String!) {
+($username:String!, $password: String!, $email: String!) {
     createUser(username:$username, password:$password, email:$email) {
       user {
         id,
@@ -40,6 +40,19 @@ function register(vars: RegisterType) {
             dispatch({
                 type: AUTH_REGISTER,
                 ...await client.mutate(RegisterQuery, vars),
+            });
+        } catch (e) {
+            dispatch({
+                type: AUTH_ERROR,
+            });
+        }
+        try {
+            dispatch({
+                type: AUTH_POST,
+                ...await client.mutate(LoginQuery, {
+                    username: vars.username,
+                    password: vars.password,
+                }),
             });
         } catch (e) {
             dispatch({

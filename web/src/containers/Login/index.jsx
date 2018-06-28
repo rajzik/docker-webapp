@@ -1,6 +1,6 @@
 // @flow
 import { login } from 'actions';
-import { Button, Input, Loading, PublicContainer } from 'components';
+import { Button, Input, Loading, PublicContainer, Link } from 'components';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Redirect from 'react-router-dom/Redirect';
@@ -33,15 +33,21 @@ export default class Login extends Component<LoginType> {
     }
     render() {
         const { authenticated, loading } = this.props;
-        if (loading) return <Loading />;
+        if (loading) return <PublicContainer><Loading /></PublicContainer>;
         if (authenticated) return <Redirect to="/" />;
         return (
             <PublicContainer>
-                <Input type="text" onChange={this.inputChange('username')} />
-                <Input type="password" onChange={this.inputChange('password')} />
+                <Input placeholder="username" type="text" onChange={this.inputChange('username')} />
+                <Input placeholder="password" type="password" onChange={this.inputChange('password')} />
                 <Button onClick={this.login}>
                     Login
                 </Button>
+                <p>
+                    also you can
+                    <Link to="/register">
+                        register
+                    </Link>
+                </p>
             </PublicContainer>
         );
     }
