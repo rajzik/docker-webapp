@@ -4,6 +4,7 @@
     "private": true,
     "dependencies": {
         "classnames": "^2.2.6",
+        "interval-promise": "^1.2.0",
         "lokka": "^1.7.0",
         "lokka-transport-http": "^1.6.1",
         "object-assign": "4.1.1",

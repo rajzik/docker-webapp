@@ -1,14 +1,45 @@
 // @flow
 // @ts-check
 
-import { NotFound, LoginPage, RegisterPage, MainPage } from 'pages';
+import { NotFound, LoginPage, RegisterPage, MainPage, GroupPage, AddFriend, JoinGroup } from 'pages';
 
 
 const privateRoutes = [
     {
         path: '/',
         component: MainPage,
-        icon: 'test',
+        isPrivate: true,
+        otherProps: {
+            exact: true,
+        },
+    },
+    {
+        path: '/group',
+        component: GroupPage,
+        isPrivate: true,
+        otherProps: {
+            exact: true,
+        },
+    },
+    {
+        path: '/add-friend',
+        component: AddFriend,
+        isPrivate: true,
+        otherProps: {
+            exact: true,
+        },
+    },
+    {
+        path: '/find-group',
+        component: JoinGroup,
+        isPrivate: true,
+        otherProps: {
+            exact: true,
+        },
+    },
+    {
+        path: '/group/:id(\\d+)',
+        component: GroupPage,
         isPrivate: true,
         otherProps: {
             exact: true,
@@ -17,7 +48,6 @@ const privateRoutes = [
     {
         path: '/:id(\\d+)',
         component: MainPage,
-        icon: 'test',
         isPrivate: true,
         otherProps: {
             exact: true,

@@ -1,7 +1,7 @@
 
 .message-box {
     grid-area: message;
-    border-top: 1px solid #333;
+    border-top: 1px solid #aaa;
     display: grid;
     grid-template-columns: auto 100px;
     position: sticky;

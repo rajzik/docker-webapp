@@ -1,5 +1,6 @@
 // @flow
 // @ts-check
+import interval from 'interval-promise';
 
 import { MESSAGES_GET, MESSAGES_LOADING, MESSAGES_ERROR, MESSAGES_SEND, client } from 'constants';
 
@@ -33,6 +34,23 @@ const messageQuery = `
     }
 }
 `;
+
+
+const startFetching = () => async (dispatch: (args: any) => void) => {
+    interval(async () => {
+        try {
+            const { me: { messages } } = await client.query(messageQuery);
+            dispatch({
+                type: MESSAGES_GET,
+                messages,
+            });
+        } catch (e) {
+            dispatch({
+                type: MESSAGES_ERROR,
+            });
+        }
+    }, 3000);
+};
 
 function getMessages() {
     return async (dispatch: (args: any) => void) => {
@@ -68,7 +86,8 @@ function sendMessage(vars: SendMessageType) {
                 type: MESSAGES_ERROR,
             });
         }
+        dispatch(getMessages());
     };
 }
 
-export { getMessages, sendMessage };
+export { getMessages, sendMessage, startFetching };

@@ -6,13 +6,13 @@
     max-width: 75%;
 }
 
-.me {
-    background-color: #fefefe;
+.friend {
+    background-color: #d0d0d0;
     color: black;
     justify-self: start;
 }
 
-.friend {
+.me {
     background-color: rgba(0, 0, 255, .75);
     color: white;
     justify-self: end;
