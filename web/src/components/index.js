@@ -11,6 +11,7 @@ import Message from './Message';
 import Link, { NavLink } from './Link';
 import Textarea from './Textarea';
 import Friend from './Friend';
+import Group from './Group';
 
 export {
     Button,
@@ -25,4 +26,5 @@ export {
     Textarea,
     NavLink,
     Friend,
+    Group,
 };

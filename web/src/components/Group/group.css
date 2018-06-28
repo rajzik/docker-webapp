@@ -1,0 +1,14 @@
+
+.group-link {
+    display: grid;
+    grid-template-rows: 100%;
+    padding: 10px;
+    color: black;
+    border-bottom: 1px solid #aaa;
+}
+.active-link {
+    background-color: rgba(0, 0, 255, .3);
+}
+.group-link p {
+    margin: auto 0;
+}

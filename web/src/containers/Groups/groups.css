@@ -1,0 +1,10 @@
+
+.group {
+    grid-area: groups;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    border-right: 1px solid #aaa;
+    width: 20%;
+}

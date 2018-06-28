@@ -9,6 +9,7 @@ import Friends from './Friends';
 import Messages from './Messages';
 import MessageBox from './MessageBox';
 import Nav from './Nav';
+import Groups from './Groups';
 
 export {
     Login,
@@ -19,4 +20,5 @@ export {
     Messages,
     MessageBox,
     Nav,
+    Groups,
 };

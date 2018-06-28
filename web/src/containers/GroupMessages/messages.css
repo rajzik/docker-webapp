@@ -1,0 +1,6 @@
+
+.chat {
+    grid-area: chat;
+    display: grid;
+    align-items: start;
+}
