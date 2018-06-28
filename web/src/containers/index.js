@@ -10,6 +10,7 @@ import Messages from './Messages';
 import MessageBox from './MessageBox';
 import Nav from './Nav';
 import Groups from './Groups';
+import JoinGroup from './JoinGroup';
 
 export {
     Login,
@@ -21,4 +22,5 @@ export {
     MessageBox,
     Nav,
     Groups,
+    JoinGroup,
 };

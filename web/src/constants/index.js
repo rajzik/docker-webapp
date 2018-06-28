@@ -16,6 +16,10 @@ import {
     FRIENDS_GET,
     FRIENDS_ERROR,
     FRIENDS_ADD,
+    GROUP_ADD,
+    GROUP_ERROR,
+    GROUP_GET,
+    GROUP_LOADING,
 } from './redux';
 import paths, { privateRoutes, LogoLink } from './pages';
 import client from './lokka';
@@ -39,4 +43,8 @@ export {
     FRIENDS_GET,
     FRIENDS_ERROR,
     FRIENDS_ADD,
+    GROUP_ADD,
+    GROUP_ERROR,
+    GROUP_GET,
+    GROUP_LOADING,
 };

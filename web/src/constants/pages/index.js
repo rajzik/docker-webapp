@@ -30,7 +30,7 @@ const privateRoutes = [
         },
     },
     {
-        path: '/find-group',
+        path: '/join-group',
         component: JoinGroup,
         isPrivate: true,
         otherProps: {

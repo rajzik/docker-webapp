@@ -15,7 +15,7 @@ const groupReducer = (state: any = defaultState, action: ActionType) => {
     case GROUP_GET:
         return {
             ...state,
-            groups: action.group,
+            groups: action.groups,
             loading: false,
         };
     case GROUP_LOADING:

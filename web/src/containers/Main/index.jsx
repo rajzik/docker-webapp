@@ -11,7 +11,7 @@ export default class Main extends Component {
         const { props } = this;
         return (
             <PageContainer>
-                <Nav {...props} />
+                <Nav {...props} area />
                 <Friends {...props} />
                 <Messages {...props} />
                 <MessageBox {...props} />

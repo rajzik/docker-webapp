@@ -2,5 +2,7 @@
 .chat {
     grid-area: chat;
     display: grid;
+    grid-auto-rows: auto;
+    grid-auto-flow: row;
     align-items: start;
 }

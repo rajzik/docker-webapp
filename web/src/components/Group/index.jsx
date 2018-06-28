@@ -11,7 +11,7 @@ type GroupProps = {
 };
 
 export default ({ id, name }: GroupProps) => (
-    <NavLink to={`/${id}`} exact className={groupLink} activeClassName={activeLink}>
+    <NavLink to={`/group/${id}`} exact className={groupLink} activeClassName={activeLink}>
         <p>
             {name}
         </p>

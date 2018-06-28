@@ -12,6 +12,8 @@ import Link, { NavLink } from './Link';
 import Textarea from './Textarea';
 import Friend from './Friend';
 import Group from './Group';
+import ListView from './ListView';
+import GroupItem from './GroupItem';
 
 export {
     Button,
@@ -27,4 +29,6 @@ export {
     NavLink,
     Friend,
     Group,
+    ListView,
+    GroupItem,
 };

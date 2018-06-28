@@ -17,6 +17,11 @@ const FRIENDS_GET = 'friends/get';
 const FRIENDS_ERROR = 'friends/error';
 const FRIENDS_ADD = 'friends/add';
 
+const GROUP_LOADING = 'GROUP/loading';
+const GROUP_GET = '  GROUP/get';
+const GROUP_ERROR = 'GROUP/error';
+const GROUP_ADD = 'GROUP/add';
+
 export {
     EXAMPLE_GET,
     EXAMPLE_LOADING,
@@ -32,4 +37,8 @@ export {
     FRIENDS_GET,
     FRIENDS_ERROR,
     FRIENDS_ADD,
+    GROUP_LOADING,
+    GROUP_GET,
+    GROUP_ERROR,
+    GROUP_ADD,
 };
