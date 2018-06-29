@@ -15,6 +15,7 @@ import Group from './Group';
 import ListView from './ListView';
 import GroupItem from './GroupItem';
 import FriendItem from './FriendItem';
+import GroupMessage from './GroupMessage';
 
 export {
     Button,
@@ -33,4 +34,5 @@ export {
     ListView,
     GroupItem,
     FriendItem,
+    GroupMessage,
 };

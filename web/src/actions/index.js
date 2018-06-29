@@ -2,9 +2,9 @@
 // @ts-check
 
 import { login, register } from './auth';
-import { getMessages, sendMessage, startFetching } from './messages';
+import { getMessages, sendMessage, startFetching, killItWithFire, reviveWithWater } from './messages';
 import { removeFriend, addFriend, getFriends } from './friends';
-import { createRoom, getGroups, joinRoom, leaveRoom } from './groups';
+import { createRoom, getGroups, joinRoom, leaveRoom, sendRoomMessage, killItWithRock, reviveWithEther, startFetchingGroups } from './groups';
 import getUsers from './users';
 
 export {
@@ -21,4 +21,10 @@ export {
     leaveRoom,
     getUsers,
     removeFriend,
+    sendRoomMessage,
+    killItWithFire,
+    reviveWithWater,
+    killItWithRock,
+    reviveWithEther,
+    startFetchingGroups,
 };

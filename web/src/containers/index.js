@@ -12,6 +12,9 @@ import Nav from './Nav';
 import Groups from './Groups';
 import JoinGroup from './JoinGroup';
 import FriendsList from './FriendsList';
+import MainGroups from './MainGroups';
+import GroupMessageBox from './GroupMessageBox';
+import GroupMessages from './GroupMessages';
 
 export {
     Login,
@@ -25,4 +28,7 @@ export {
     Groups,
     JoinGroup,
     FriendsList,
+    MainGroups,
+    GroupMessageBox,
+    GroupMessages,
 };

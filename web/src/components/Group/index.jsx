@@ -7,12 +7,12 @@ import { activeLink, groupLink } from './group.css';
 
 type GroupProps = {
     id: number,
-    name: string,
+    roomName: string,
 };
 
-export default ({ id, name }: GroupProps) => (
+export default ({ id, roomName }: GroupProps) => (
     <NavLink to={`/group/${id}`} exact className={groupLink} activeClassName={activeLink}>
         <p>
-            {name}
+            {roomName}
         </p>
     </NavLink>);

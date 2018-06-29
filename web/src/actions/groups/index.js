@@ -1,6 +1,7 @@
 // @flow
 
 import { GROUP_GET, GROUP_LOADING, GROUP_ERROR, GROUP_ADD, client } from 'constants';
+import interval from 'interval-promise';
 
 const CreateGroupQ = `
 ($roomName:String!){
@@ -24,6 +25,14 @@ const leaveGroupQ = `
 }
 `;
 
+const SendMessageQ = `
+($roomId:Int!,$message:String!) {
+    sendRoomMessage(roomId:$roomId,message:$message) {
+      message
+    }
+  }
+`;
+
 const groupQuery = `
 {
     rooms {
@@ -32,9 +41,47 @@ const groupQuery = `
       users {
         id
       }
+      messages {
+        id
+        message
+        fromUser {
+          id
+          username
+        }
+      }
     }
 }
 `;
+
+let stopped = false;
+
+function killItWithRock() {
+    stopped = true;
+}
+
+function reviveWithEther() {
+    stopped = false;
+}
+
+const startFetchingGroups = () => async (dispatch: (args: any) => void) => {
+    interval(async (_, stop) => {
+        if (stopped) {
+            stop();
+        }
+        try {
+            const { rooms: groups } = await client.query(groupQuery);
+            dispatch({
+                type: GROUP_GET,
+                groups,
+            });
+        } catch (e) {
+            dispatch({
+                type: GROUP_ERROR,
+                ...e,
+            });
+        }
+    }, 3000);
+};
 
 
 function getGroups() {
@@ -51,7 +98,6 @@ function getGroups() {
         } catch (e) {
             dispatch({
                 type: GROUP_ERROR,
-
                 ...e,
             });
         }
@@ -94,7 +140,25 @@ function joinRoom(roomId) {
     };
 }
 
-
+function sendRoomMessage(args: {
+    message: string,
+    roomId: number
+}) {
+    return async (dispatch: (args: any) => void) => {
+        dispatch({
+            type: GROUP_LOADING,
+        });
+        try {
+            await client.mutate(SendMessageQ, args);
+            dispatch(getGroups());
+        } catch (e) {
+            dispatch({
+                type: GROUP_ERROR,
+                ...e,
+            });
+        }
+    };
+}
 function leaveRoom(roomId) {
     return async (dispatch: (args: any) => void) => {
         dispatch({
@@ -112,4 +176,13 @@ function leaveRoom(roomId) {
 }
 
 
-export { getGroups, createRoom, joinRoom, leaveRoom };
+export {
+    getGroups,
+    createRoom,
+    joinRoom,
+    leaveRoom,
+    sendRoomMessage,
+    startFetchingGroups,
+    killItWithRock,
+    reviveWithEther,
+};

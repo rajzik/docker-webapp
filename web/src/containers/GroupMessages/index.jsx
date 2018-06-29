@@ -1,7 +1,6 @@
 // @flow
 
-import { getMessages, startFetching } from 'actions';
-import { Message } from 'components';
+import { GroupMessage } from 'components';
 import React, { Component } from 'react';
 import connect from 'react-redux/lib/connect/connect';
 import { chat } from './messages.css';
@@ -9,43 +8,46 @@ import { chat } from './messages.css';
 
 type MessagesProps = {
     dispatch: (args: any) => void,
-    messages: Array<mixed>,
+    groups: Array<mixed>,
     match: mixed,
+    self: string,
 };
 
-@connect(({ messages: { messages } }) => ({ messages }), dispatch => ({ dispatch }))
+@connect(({
+    groups: { groups },
+    auth: { me: { id: self } },
+}) => ({
+    groups, self,
+}), dispatch => ({ dispatch }))
 export default class Messages extends Component<MessagesProps> {
-    constructor(props: MessagesProps) {
-        super(props);
-        props.dispatch(getMessages());
-        props.dispatch(startFetching());
-    }
     state = {
         messages: [],
-        matchId: 0,
     }
     componentWillReceiveProps(nextProps: MessagesProps) {
         if (nextProps.match) {
             const matchId = nextProps.match.params.id;
-            const messages = nextProps.messages.filter((item) => {
-                const { id } = item.userSet[1];
-                const { id: id2 } = item.userSet[0];
-                return id === matchId || id2 === matchId;
-            });
-            this.setState({
-                messages,
-                matchId,
-            });
+            const a = nextProps.groups.find(item => item.id === matchId);
+            if (a) {
+                this.setState({
+                    messages: a.messages,
+                });
+            }
+        }
+    }
+    componentDidUpdate() {
+        if (window.innerHeight + window.scrollY === document.height - 200) {
+            window.scrollTo(0, document.body.scrollHeight);
         }
     }
 
     render() {
-        const { messages, matchId } = this.state;
+        const { messages } = this.state;
+        const { self } = this.props;
         return (
             <div className={chat}>
                 {
                     messages.map(message => (
-                        <Message key={message.id} friendId={matchId} {...message} />
+                        <GroupMessage self={self} key={message.id} {...message} />
                     ))
                 }
                 <div />

@@ -1,6 +1,6 @@
 // @flow
 
-import { getMessages, startFetching } from 'actions';
+import { getMessages, startFetching, reviveWithWater, killItWithFire } from 'actions';
 import { Message } from 'components';
 import React, { Component } from 'react';
 import connect from 'react-redux/lib/connect/connect';
@@ -18,12 +18,17 @@ export default class Messages extends Component<MessagesProps> {
     constructor(props: MessagesProps) {
         super(props);
         props.dispatch(getMessages());
-        props.dispatch(startFetching());
     }
     state = {
         messages: [],
         matchId: 0,
     }
+    componentDidMount() {
+        reviveWithWater();
+        this.props.dispatch(startFetching());
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
     componentWillReceiveProps(nextProps: MessagesProps) {
         if (nextProps.match) {
             const matchId = nextProps.match.params.id;
@@ -38,7 +43,15 @@ export default class Messages extends Component<MessagesProps> {
             });
         }
     }
+    componentDidUpdate() {
+        if (window.innerHeight + window.scrollY === document.height - 200) {
+            window.scrollTo(0, document.body.scrollHeight);
+        }
+    }
 
+    componentWillUnmount() {
+        killItWithFire();
+    }
     render() {
         const { messages, matchId } = this.state;
         return (
@@ -48,7 +61,6 @@ export default class Messages extends Component<MessagesProps> {
                         <Message key={message.id} friendId={matchId} {...message} />
                     ))
                 }
-                <div />
             </div>);
     }
 }

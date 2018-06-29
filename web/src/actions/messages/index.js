@@ -4,11 +4,21 @@ import interval from 'interval-promise';
 
 import { MESSAGES_GET, MESSAGES_LOADING, MESSAGES_ERROR, MESSAGES_SEND, client } from 'constants';
 
+
 type SendMessageType = {
     message: string,
     user: number,
 };
 
+let stopped = false;
+
+function killItWithFire() {
+    stopped = true;
+}
+
+function reviveWithWater() {
+    stopped = false;
+}
 
 const SendMessageQ = `
 ($message:String!, $user:Int!){
@@ -37,7 +47,10 @@ const messageQuery = `
 
 
 const startFetching = () => async (dispatch: (args: any) => void) => {
-    interval(async () => {
+    interval(async (_, stop) => {
+        if (stopped) {
+            stop();
+        }
         try {
             const { me: { messages } } = await client.query(messageQuery);
             dispatch({
@@ -90,4 +103,4 @@ function sendMessage(vars: SendMessageType) {
     };
 }
 
-export { getMessages, sendMessage, startFetching };
+export { getMessages, sendMessage, startFetching, killItWithFire, reviveWithWater };
