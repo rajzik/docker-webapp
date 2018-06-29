@@ -5,7 +5,6 @@ import {
     FRIENDS_LOADING,
     FRIENDS_GET,
     FRIENDS_ERROR,
-    FRIENDS_ADD,
     client,
 } from 'constants';
 
@@ -32,6 +31,13 @@ const AddFriendQ = `
     }
   }`;
 
+const removeFriendQ = `
+($user:Int!){
+    removeFriend(userId:$user) {
+      success
+    }
+  }
+`;
 function getFriends() {
     return async (dispatch: (args: any) => void) => {
         dispatch({ type: FRIENDS_LOADING });
@@ -53,10 +59,8 @@ function addFriend(args: {user: number}) {
     return async (dispatch: (args: any) => void) => {
         dispatch({ type: FRIENDS_LOADING });
         try {
-            dispatch({
-                type: FRIENDS_ADD,
-                ...await client.mutate(AddFriendQ, args),
-            });
+            await client.mutate(AddFriendQ, args);
+            dispatch(getFriends());
         } catch (e) {
             dispatch({
                 type: FRIENDS_ERROR,
@@ -65,5 +69,18 @@ function addFriend(args: {user: number}) {
     };
 }
 
+function removeFriend(args: {user: number}) {
+    return async (dispatch: (args: any) => void) => {
+        dispatch({ type: FRIENDS_LOADING });
+        try {
+            await client.mutate(removeFriendQ, args);
+            dispatch(getFriends());
+        } catch (e) {
+            dispatch({
+                type: FRIENDS_ERROR,
+            });
+        }
+    };
+}
 
-export { getFriends, addFriend };
+export { getFriends, addFriend, removeFriend };

@@ -33,10 +33,13 @@ const LoginQuery = `
 
 const meQuery = `
 {
-    me {
+    me{
+      id
+      friends {
         id
+      }
     }
-}
+  }
 `;
 
 function register(vars: RegisterType) {

@@ -20,6 +20,9 @@ import {
     GROUP_ERROR,
     GROUP_GET,
     GROUP_LOADING,
+    USERS_ERROR,
+    USERS_GET,
+    USERS_LOADING,
 } from './redux';
 import paths, { privateRoutes, LogoLink } from './pages';
 import client from './lokka';
@@ -47,4 +50,7 @@ export {
     GROUP_ERROR,
     GROUP_GET,
     GROUP_LOADING,
+    USERS_ERROR,
+    USERS_GET,
+    USERS_LOADING,
 };

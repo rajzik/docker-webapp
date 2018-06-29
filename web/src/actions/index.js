@@ -3,8 +3,9 @@
 
 import { login, register } from './auth';
 import { getMessages, sendMessage, startFetching } from './messages';
-import { addFriend, getFriends } from './friends';
+import { removeFriend, addFriend, getFriends } from './friends';
 import { createRoom, getGroups, joinRoom, leaveRoom } from './groups';
+import getUsers from './users';
 
 export {
     login,
@@ -18,4 +19,6 @@ export {
     getGroups,
     joinRoom,
     leaveRoom,
+    getUsers,
+    removeFriend,
 };

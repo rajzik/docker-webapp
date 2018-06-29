@@ -9,19 +9,21 @@ type GroupItemProps = {
     username: string,
     onFriend: () => void,
     onUnfriend: () => void,
-    users: Array<mixed>,
+    friends: Array<mixed>,
     userId: string,
+    id: string,
 };
 
 export default ({
-    username, users, userId, onFriend, onUnfriend,
+    id, username, friends, userId, onFriend, onUnfriend,
 }: GroupItemProps) => {
-    const isThere = users.some(user => user.id === userId);
+    const areWeFriends = friends.some(({ id: friendId }) => friendId === id);
+    if (id === userId) return null;
     return (
         <div className={row}>
             <p>{username}</p>
             {
-                !isThere ?
+                !areWeFriends ?
                     <Button onClick={onFriend}>
                         Make friend
                     </Button> :

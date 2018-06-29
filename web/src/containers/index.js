@@ -11,6 +11,7 @@ import MessageBox from './MessageBox';
 import Nav from './Nav';
 import Groups from './Groups';
 import JoinGroup from './JoinGroup';
+import FriendsList from './FriendsList';
 
 export {
     Login,
@@ -23,4 +24,5 @@ export {
     Nav,
     Groups,
     JoinGroup,
+    FriendsList,
 };

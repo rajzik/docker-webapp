@@ -22,6 +22,11 @@ const GROUP_GET = '  GROUP/get';
 const GROUP_ERROR = 'GROUP/error';
 const GROUP_ADD = 'GROUP/add';
 
+const USERS_LOADING = 'USERS/loading';
+const USERS_GET = 'USERS/get';
+const USERS_ERROR = 'USERS/error';
+
+
 export {
     EXAMPLE_GET,
     EXAMPLE_LOADING,
@@ -41,4 +46,7 @@ export {
     GROUP_GET,
     GROUP_ERROR,
     GROUP_ADD,
+    USERS_LOADING,
+    USERS_ERROR,
+    USERS_GET,
 };

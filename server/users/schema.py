@@ -1,6 +1,8 @@
 from django.contrib.auth import get_user_model
 from django.conf import settings
 import graphene
+from django.db.models import Q
+
 from graphene_django import DjangoObjectType
 from .models import User, UserFriends
 
@@ -33,16 +35,16 @@ class AddFriend(graphene.Mutation):
 
     class Arguments:
         user_id = graphene.Int()
-    
+
     def mutate(self, info, user_id):
         user = info.context.user
         if user.is_anonymous:
             raise Exception('Not logged!')
-        
+
         friend = User.objects.filter(id=user_id).first()
         if not friend:
             raise Exception('Invalid friend!')
-        
+
         userFriend = UserFriends(user1=user, user2=friend)
         userFriend.save()
 
@@ -51,10 +53,31 @@ class AddFriend(graphene.Mutation):
 
         return AddFriend(user=friend)
 
+class RemoveFriend(graphene.Mutation):
+    success = graphene.Boolean()
+
+    class Arguments:
+        user_id = graphene.Int()
+
+    def mutate(self, info, user_id):
+        user = info.context.user
+        if user.is_anonymous:
+            raise Exception('Not logged!')
+
+        friend = User.objects.filter(id=user_id).first()
+        if not friend:
+            raise Exception('Invalid friend!')
+
+        UserFriends.objects.filter(Q(user1=user) & Q(user2=friend)).delete()
+        UserFriends.objects.filter(Q(user2=user) & Q(user1=friend)).delete()
+
+        return RemoveFriend(success=True)
+
 
 class Mutation(graphene.ObjectType):
     create_user = CreateUser.Field()
     add_friend = AddFriend.Field()
+    remove_friend = RemoveFriend.Field()
 
 class Query(graphene.ObjectType):
     me = graphene.Field(UserType)
