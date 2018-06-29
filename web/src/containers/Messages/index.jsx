@@ -44,7 +44,7 @@ export default class Messages extends Component<MessagesProps> {
         }
     }
     componentDidUpdate() {
-        if (window.innerHeight + window.scrollY === document.height - 200) {
+        if (window.innerHeight + window.scrollY === document.height - 300) {
             window.scrollTo(0, document.body.scrollHeight);
         }
     }
