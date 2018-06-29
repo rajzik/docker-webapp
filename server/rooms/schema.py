@@ -12,6 +12,15 @@ class RoomType(DjangoObjectType):
     class Meta:
         model = Room
 
+class GroupMessageType(DjangoObjectType):
+
+    class Meta:
+        model = GroupMessage
+
+class RoomMessageType(DjangoObjectType):
+    class Meta:
+        model = RoomMessages
+
 class JoinRoom(graphene.Mutation):
     room_name = graphene.String()
 
@@ -126,7 +135,14 @@ class Mutation(graphene.ObjectType):
 
 class Query(graphene.ObjectType):
     rooms = graphene.List(RoomType)
+    room_messages = graphene.List(RoomMessageType)
+    group_message = graphene.List(GroupMessageType)
 
     def resolve_rooms(self, info):
         return Room.objects.all()
 
+    def resolve_room_messages(self, info):
+        return RoomMessages.objects.all()
+
+    def resolve_group_message(self, info):
+        return GroupMessage.objects.all()
