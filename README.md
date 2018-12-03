@@ -1,18 +1,27 @@
-# Installation
+# College project for web applications
 
-## Prerequisites
+> This project was created in very short time, quality of this project isn't great. 
+> Front-end of this project whasn't main purpose, also was created in 12 hours.
+> Main goal was to learn graphql and how to write backend for it. There are some things that aren't great, I was learning python and graphQL at the same time. 
+> But I am satisfied with it.
+
+## Installation
+
+
+
+### Prerequisites
 
 1. Docker
 2. docker-compose
 3. virtual-box ()
 
-## First run
+### First run
 
 ```bash
 $ docker-compose up
 ```
 
-## Following build
+### Following build
 ```bash
 $ docker-compose up --build
 ```
@@ -24,7 +33,7 @@ Database is postgres so default port
 Adminer is running on 8080
 
 
-## Swarm
+### Swarm
 
 Init docker swarm
 
@@ -55,7 +64,7 @@ docker swarm leave --force
 ```
 
 
-# To clean things up
+### To clean things up
 
 ```bash
 ./cleanup.sh
